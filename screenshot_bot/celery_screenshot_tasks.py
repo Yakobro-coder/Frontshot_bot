@@ -14,7 +14,7 @@ import re
 url_pattern_regex = '(([\da-zA-Z])([_\w-]{,62})\.){,127}(([\da-zA-Z])[_\w-]{,61})?([\da-zA-Z]\.((xn\-\-[a-zA-Z\d]+)|([a-zA-Z\d]{2,})))'
 
 logging.basicConfig(filename='celery_log', level=logging.INFO)
-app = Celery('tasks', broker=os.getenv('BROKER_CELERY'), backend=os.getenv('BACKEND_CELERY'))
+app = Celery('tasks', broker=os.getenv('BROKER_CELERY'))
 
 
 @app.task

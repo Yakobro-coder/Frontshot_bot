@@ -6,3 +6,5 @@ selenium==4.3.0
 validators==0.20.0
 python-dotenv==0.20.0
 python-whois==0.8.0
+SQLAlchemy==1.4.39
+psycopg2-binary==2.9.3

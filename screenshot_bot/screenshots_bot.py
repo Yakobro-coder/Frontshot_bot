@@ -2,6 +2,8 @@ from telebot.async_telebot import AsyncTeleBot
 import asyncio
 from telebot import types
 from celery_screenshot_tasks import screen_create
+from postgres_stat import insert_db
+from datetime import datetime
 import validators
 import whois
 import socket
@@ -50,6 +52,9 @@ async def screenshot_url(message):
     """
     url = re.search(url_pattern_regex, message.text.split(' ')[0]).group(0)
     if validators.domain(url):
+        # write in db
+        insert_db.insert_msg_info(message.from_user.id, message.id, datetime.utcfromtimestamp(message.date + 10800), url)
+
         url = 'http://' + url
         res = await bot.send_animation(
             chat_id=message.chat.id,
